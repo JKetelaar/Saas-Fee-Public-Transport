@@ -82,7 +82,7 @@ class Version20171226231907 extends AbstractMigration implements ContainerAwareI
             $lineStop = new LineStop();
             $lineStop->setLine($line);
             $lineStop->setStop($stop);
-            
+
             for ($i = 0; $i < count($stopNames); $i++) {
                 if ($stopNames[$i] == $stop->getName()) {
                     $lineStop->setStopOrder($i);
