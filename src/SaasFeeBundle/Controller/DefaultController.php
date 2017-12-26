@@ -4,8 +4,10 @@
  */
 namespace SaasFeeBundle\Controller;
 
+use SaasFeeBundle\Entity\Stop;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -26,5 +28,28 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @Route("/lines", name="get_lines")
+     * @return JsonResponse
+     */
+    public function linesAction(Request $request)
+    {
+        $repository = $this->getDoctrine()->getRepository('SaasFeeBundle:Line');
+        $lines = $repository->findAll();
+        $response = [];
+        foreach ($lines as $line){
+            $stops = [];
+            /** @var Stop $stop */
+            foreach ($line->getStops() as $stop){
+                $stops[] = ['name' => $stop->getName(), 'lat' => $stop->getLatitude(), 'lon' => $stop->getLongitude()];
+            }
+            $response[] = ['name' => $line->getName(), 'line' => 'Line ' . $line->getNumber(), 'stops' => $stops];
+        }
+
+        return new JsonResponse($response);
     }
 }
