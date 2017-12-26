@@ -24,25 +24,10 @@ class Version20171226204548 extends AbstractMigration implements ContainerAwareI
     public function up(Schema $schema)
     {
         $doctrine = $this->container->get('doctrine');
-        $manager  = $doctrine->getManager();
+        $manager = $doctrine->getManager();
 
-        foreach ($this->getStops() as $stop){
+        foreach ($this->getStops() as $stop) {
             $manager->persist($stop);
-        }
-
-        $manager->flush();
-    }
-
-    /**
-     * @param Schema $schema
-     */
-    public function down(Schema $schema)
-    {
-        $doctrine = $this->container->get('doctrine');
-        $manager  = $doctrine->getManager();
-
-        foreach ($this->getStops() as $stop){
-            $manager->remove($stop);
         }
 
         $manager->flush();
@@ -51,7 +36,8 @@ class Version20171226204548 extends AbstractMigration implements ContainerAwareI
     /**
      * @return Stop[]
      */
-    public function getStops(): array {
+    public function getStops(): array
+    {
         $stops = [
             [
                 'name' => 'Royal',
@@ -62,10 +48,80 @@ class Version20171226204548 extends AbstractMigration implements ContainerAwareI
                 'name' => 'Allalin',
                 'latitude' => 0,
                 'longitude' => 0,
-            ]
+            ],
+            [
+                'name' => 'Central',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Alfa',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Felsenegg',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Sunmatte',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Grossus Moos',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Kantonsstrasse',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Post',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Alpin Express',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Alphitta',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Etoile',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Central',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Dorfplats',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'All In',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
+            [
+                'name' => 'Atlantic',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
         ];
 
-        foreach ($stops as $item){
+        foreach ($stops as $item) {
             $stop = new Stop();
             $stop->setName($item['name']);
             $stop->setLatitude($item['latitude']);
@@ -75,6 +131,21 @@ class Version20171226204548 extends AbstractMigration implements ContainerAwareI
         }
 
         return $stops;
+    }
+
+    /**
+     * @param Schema $schema
+     */
+    public function down(Schema $schema)
+    {
+        $doctrine = $this->container->get('doctrine');
+        $manager = $doctrine->getManager();
+
+        foreach ($this->getStops() as $stop) {
+            $manager->remove($stop);
+        }
+
+        $manager->flush();
     }
 
     public function setContainer(ContainerInterface $container = null)
