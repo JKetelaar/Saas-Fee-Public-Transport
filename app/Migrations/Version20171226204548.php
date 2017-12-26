@@ -114,6 +114,11 @@ class Version20171226204548 extends AbstractMigration implements ContainerAwareI
                 'latitude' => 0,
                 'longitude' => 0,
             ],
+            [
+                'name' => 'Gletscherbrücke',
+                'latitude' => 0,
+                'longitude' => 0,
+            ],
         ];
         $stopObjects = [];
 
