@@ -71,10 +71,13 @@ class Version20171226231907 extends AbstractMigration implements ContainerAwareI
         $line->setName($name);
         $line->setNumber($number);
 
-        /** @var LineStop[] $lineStops */
+        /**
+         * @var LineStop[] $lineStops
+         * @var Stop[] $stops
+         */
         $lineStops = [];
-        /** @var Stop[] $stops */
         $stops = $repository->searchForStops($stopNames);
+
         foreach ($stops as $stop) {
             $lineStop = new LineStop();
             $lineStop->setLine($line);
@@ -85,6 +88,7 @@ class Version20171226231907 extends AbstractMigration implements ContainerAwareI
                     break;
                 }
             }
+
             $manager->persist($lineStop);
             $lineStops[] = $lineStop;
 
