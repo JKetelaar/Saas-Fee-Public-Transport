@@ -32,7 +32,7 @@ class LineStop
     private $stop;
 
     /**
-     * @var \stdClass
+     * @var Line
      *
      * @ORM\ManyToOne(targetEntity="SaasFeeBundle\Entity\Line", inversedBy="stops")
      * @ORM\JoinColumn(name="line_id", referencedColumnName="id")
@@ -58,13 +58,19 @@ class LineStop
     }
 
     /**
-     * Set stop
-     *
-     * @param \stdClass $stop
+     * @return Stop
+     */
+    public function getStop(): Stop
+    {
+        return $this->stop;
+    }
+
+    /**
+     * @param Stop $stop
      *
      * @return LineStop
      */
-    public function setStop($stop)
+    public function setStop(Stop $stop): LineStop
     {
         $this->stop = $stop;
 
@@ -72,37 +78,23 @@ class LineStop
     }
 
     /**
-     * Get stop
-     *
-     * @return \stdClass
+     * @return Line
      */
-    public function getStop()
+    public function getLine(): Line
     {
-        return $this->stop;
+        return $this->line;
     }
 
     /**
-     * Set line
-     *
-     * @param \stdClass $line
+     * @param Line $line
      *
      * @return LineStop
      */
-    public function setLine($line)
+    public function setLine(Line $line): LineStop
     {
         $this->line = $line;
 
         return $this;
-    }
-
-    /**
-     * Get line
-     *
-     * @return \stdClass
-     */
-    public function getLine()
-    {
-        return $this->line;
     }
 
     /**

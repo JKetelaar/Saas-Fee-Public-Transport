@@ -5,6 +5,7 @@ namespace SaasFee\Migrations;
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use SaasFeeBundle\Entity\Line;
+use SaasFeeBundle\Entity\LineStop;
 use SaasFeeBundle\Entity\Stop;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -12,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20171226211907 extends AbstractMigration implements ContainerAwareInterface
+class Version20171226231907 extends AbstractMigration implements ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -70,14 +71,28 @@ class Version20171226211907 extends AbstractMigration implements ContainerAwareI
         $line->setName($name);
         $line->setNumber($number);
 
+        /** @var LineStop[] $lineStops */
+        $lineStops = [];
         /** @var Stop[] $stops */
         $stops = $repository->searchForStops($stopNames);
         foreach ($stops as $stop) {
-            $stop->addLine($line);
+            $lineStop = new LineStop();
+            $lineStop->setLine($line);
+            $lineStop->setStop($stop);
+            for ($i = 0; $i < count($stopNames); $i++) {
+                if ($stopNames[$i] == $stop->getName()) {
+                    $lineStop->setStopOrder($i);
+                    break;
+                }
+            }
+            $manager->persist($lineStop);
+            $lineStops[] = $lineStop;
+
+            $stop->addLine($lineStop);
             $manager->persist($stop);
         }
 
-        $line->setStops($stops);
+        $line->setStops($lineStops);
         $manager->persist($line);
     }
 

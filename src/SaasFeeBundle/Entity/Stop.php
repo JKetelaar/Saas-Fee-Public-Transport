@@ -166,11 +166,11 @@ class Stop
     }
 
     /**
-     * @param Line $line
+     * @param LineStop $line
      *
      * @return Stop
      */
-    public function addLine(Line $line): Stop
+    public function addLine(LineStop $line): Stop
     {
         $this->lines[] = $line;
 

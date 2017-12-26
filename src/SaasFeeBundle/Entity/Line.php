@@ -78,7 +78,7 @@ class Line
     /**
      * Set stops
      *
-     * @param array $stops
+     * @param LineStop[] $stops
      *
      * @return Line
      */
