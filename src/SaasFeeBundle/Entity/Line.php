@@ -68,7 +68,7 @@ class Line
     /**
      * Get stops
      *
-     * @return array
+     * @return LineStop[]
      */
     public function getStops()
     {

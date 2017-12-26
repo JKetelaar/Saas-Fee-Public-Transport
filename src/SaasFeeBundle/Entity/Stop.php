@@ -146,7 +146,7 @@ class Stop
     }
 
     /**
-     * @return Line[]
+     * @return LineStop[]
      */
     public function getLines(): array
     {
@@ -154,7 +154,7 @@ class Stop
     }
 
     /**
-     * @param Line[] $lines
+     * @param LineStop[] $lines
      *
      * @return Stop
      */
