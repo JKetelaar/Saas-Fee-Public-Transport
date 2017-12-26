@@ -25,11 +25,60 @@ class Version20171226211907 extends AbstractMigration implements ContainerAwareI
     public function up(Schema $schema)
     {
         $doctrine = $this->container->get('doctrine');
-        $manager  = $doctrine->getManager();
+        $manager = $doctrine->getManager();
 
         $this->addLines();
 
         $manager->flush();
+    }
+
+    private function addLines()
+    {
+        $this->addLine('Intersport', 1, ['Royal', 'Allalin', 'Central', 'Dorfplats', 'Gletscherbrücke']);
+
+        $this->addLine(
+            'Raiffeisen',
+            2,
+            ['Alfa', 'Felsenegg', 'Sunmatte', 'Grossus Moos', 'Royal', 'Allalin', 'Kantonsstrasse', 'Gletscherbrücke']
+        );
+
+        $this->addLine(
+            'Allalino',
+            3,
+            ['Alphitta', 'Etoile', 'Royal', 'Allalin', 'Central', 'Dorfplatz', 'Gletscherbrücke']
+        );
+
+        $this->addLine(
+            'Energie-Bus',
+            4,
+            ['All In', 'Atlantic', 'Alphitta', 'Etoile', 'Royal', 'Allalin', 'Alpin Express', 'Gletscherbrücke']
+        );
+    }
+
+    /**
+     * @param string $name
+     * @param int $number
+     * @param string[] $stopNames
+     */
+    private function addLine(string $name, int $number, array $stopNames)
+    {
+        $doctrine = $this->container->get('doctrine');
+        $manager = $doctrine->getManager();
+        $repository = $manager->getRepository('SaasFeeBundle:Stop');
+
+        $line = new Line();
+        $line->setName($name);
+        $line->setNumber($number);
+
+        /** @var Stop[] $stops */
+        $stops = $repository->searchForStops($stopNames);
+        foreach ($stops as $stop) {
+            $stop->addLine($line);
+            $manager->persist($stop);
+        }
+
+        $line->setStops($stops);
+        $manager->persist($line);
     }
 
     /**
@@ -44,30 +93,5 @@ class Version20171226211907 extends AbstractMigration implements ContainerAwareI
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
-    }
-
-    private function addLines()
-    {
-        $this->addLine('Intersport', 1, ['Royal', 'Allalin', 'Central', 'Dorfplats']);
-    }
-
-    private function addLine(string $name, int $number, array $stopNames){
-        $doctrine = $this->container->get('doctrine');
-        $manager  = $doctrine->getManager();
-        $repository = $manager->getRepository('SaasFeeBundle:Stop');
-
-        $line = new Line();
-        $line->setName($name);
-        $line->setNumber($number);
-
-        /** @var Stop[] $stops */
-        $stops = $repository->searchForStops($stopNames);
-        foreach ($stops as $stop){
-            $stop->addLine($line);
-            $manager->persist($stop);
-        }
-
-        $line->setStops($stops);
-        $manager->persist($line);
     }
 }
