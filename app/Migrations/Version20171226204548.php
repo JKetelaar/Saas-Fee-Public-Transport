@@ -100,11 +100,6 @@ class Version20171226204548 extends AbstractMigration implements ContainerAwareI
                 'longitude' => 0,
             ],
             [
-                'name' => 'Central',
-                'latitude' => 0,
-                'longitude' => 0,
-            ],
-            [
                 'name' => 'Dorfplats',
                 'latitude' => 0,
                 'longitude' => 0,
@@ -120,6 +115,7 @@ class Version20171226204548 extends AbstractMigration implements ContainerAwareI
                 'longitude' => 0,
             ],
         ];
+        $stopObjects = [];
 
         foreach ($stops as $item) {
             $stop = new Stop();
@@ -127,10 +123,10 @@ class Version20171226204548 extends AbstractMigration implements ContainerAwareI
             $stop->setLatitude($item['latitude']);
             $stop->setLongitude($item['longitude']);
 
-            $stops[] = $stop;
+            $stopObjects[] = $stop;
         }
 
-        return $stops;
+        return $stopObjects;
     }
 
     /**
