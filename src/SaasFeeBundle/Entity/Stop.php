@@ -165,5 +165,17 @@ class Stop
 
         return $this;
     }
+
+    /**
+     * @param Line $line
+     *
+     * @return Stop
+     */
+    public function addLine(Line $line): Stop
+    {
+        $this->lines[] = $line;
+
+        return $this;
+    }
 }
 

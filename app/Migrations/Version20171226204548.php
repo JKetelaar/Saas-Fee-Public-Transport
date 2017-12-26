@@ -36,7 +36,7 @@ class Version20171226204548 extends AbstractMigration implements ContainerAwareI
     /**
      * @return Stop[]
      */
-    public function getStops(): array
+    private function getStops(): array
     {
         $stops = [
             [

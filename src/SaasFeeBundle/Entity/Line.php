@@ -90,6 +90,20 @@ class Line
     }
 
     /**
+     * Set stops
+     *
+     * @param Stop $stop
+     *
+     * @return Line
+     */
+    public function addStop(Stop $stop)
+    {
+        $this->stops[] = $stop;
+
+        return $this;
+    }
+
+    /**
      * Get number
      *
      * @return int
