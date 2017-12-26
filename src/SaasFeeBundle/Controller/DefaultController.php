@@ -51,6 +51,7 @@ class DefaultController extends Controller
                     'name' => $stop->getStop()->getName(),
                     'lat' => $stop->getStop()->getLatitude(),
                     'lon' => $stop->getStop()->getLongitude(),
+                    'order' => $stop->getStopOrder()
                 ];
             }
             $response[] = ['name' => $line->getName(), 'line' => 'Line '.$line->getNumber(), 'stops' => $stops];
