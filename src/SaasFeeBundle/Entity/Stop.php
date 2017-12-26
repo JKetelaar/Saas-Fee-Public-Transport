@@ -2,8 +2,10 @@
 /**
  * @author JKetelaar
  */
+
 namespace SaasFeeBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +47,22 @@ class Stop
      */
     private $longitude;
 
+    /**
+     * @var Line[]
+     *
+     * @ORM\ManyToMany(targetEntity="SaasFeeBundle\Entity\Line", inversedBy="stops")
+     * @ORM\JoinColumn(name="stops_lines")
+     */
+    private $lines;
+
+    /**
+     * Stop constructor.
+     */
+    public function __construct()
+    {
+        $this->lines = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -54,6 +72,16 @@ class Stop
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -71,13 +99,13 @@ class Stop
     }
 
     /**
-     * Get name
+     * Get latitude
      *
-     * @return string
+     * @return float
      */
-    public function getName()
+    public function getLatitude()
     {
-        return $this->name;
+        return $this->latitude;
     }
 
     /**
@@ -95,13 +123,13 @@ class Stop
     }
 
     /**
-     * Get latitude
+     * Get longitude
      *
      * @return float
      */
-    public function getLatitude()
+    public function getLongitude()
     {
-        return $this->latitude;
+        return $this->longitude;
     }
 
     /**
@@ -119,13 +147,23 @@ class Stop
     }
 
     /**
-     * Get longitude
-     *
-     * @return float
+     * @return Line[]
      */
-    public function getLongitude()
+    public function getLines(): array
     {
-        return $this->longitude;
+        return $this->lines;
+    }
+
+    /**
+     * @param Line[] $lines
+     *
+     * @return Stop
+     */
+    public function setLines(array $lines): Stop
+    {
+        $this->lines = $lines;
+
+        return $this;
     }
 }
 
