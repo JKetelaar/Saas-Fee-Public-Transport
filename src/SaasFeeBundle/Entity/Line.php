@@ -27,9 +27,9 @@ class Line
     private $id;
 
     /**
-     * @var Stop[]
+     * @var LineStop[]
      *
-     * @ORM\ManyToMany(targetEntity="SaasFeeBundle\Entity\Stop", mappedBy="lines")
+     * @ORM\OneToMany(targetEntity="SaasFeeBundle\Entity\LineStop", mappedBy="line")
      */
     private $stops;
 

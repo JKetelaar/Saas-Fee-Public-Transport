@@ -48,10 +48,9 @@ class Stop
     private $longitude;
 
     /**
-     * @var Line[]
+     * @var LineStop[]
      *
-     * @ORM\ManyToMany(targetEntity="SaasFeeBundle\Entity\Line", inversedBy="stops")
-     * @ORM\JoinColumn(name="stops_lines")
+     * @ORM\OneToMany(targetEntity="SaasFeeBundle\Entity\LineStop", mappedBy="stop")
      */
     private $lines;
 
