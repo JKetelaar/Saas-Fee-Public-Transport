@@ -1,11 +1,15 @@
 <?php
+/**
+ * @author JKetelaar
+ */
 
 namespace SaasFeeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Plan
+ * Class Plan
+ * @package SaasFeeBundle\Entity
  *
  * @ORM\Table(name="plan")
  * @ORM\Entity(repositoryClass="SaasFeeBundle\Repository\PlanRepository")
