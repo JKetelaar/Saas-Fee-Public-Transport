@@ -7,6 +7,7 @@ namespace SaasFeeBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * Class Line
@@ -72,7 +73,7 @@ class Line
      */
     public function getStops()
     {
-        $stops = $this->stops->getValues();
+        $stops = $this->stops instanceof PersistentCollection ? $this->stops->getValues() : $this->stops;
         usort(
             $stops,
             function (LineStop $a, LineStop $b) {
