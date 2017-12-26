@@ -43,9 +43,8 @@ class DefaultController extends Controller
         $response = [];
         foreach ($lines as $line){
             $stops = [];
-            /** @var Stop $stop */
             foreach ($line->getStops() as $stop){
-                $stops[] = ['name' => $stop->getName(), 'lat' => $stop->getLatitude(), 'lon' => $stop->getLongitude()];
+                $stops[] = ['name' => $stop->getStop()->getName(), 'lat' => $stop->getStop()->getLatitude(), 'lon' => $stop->getStop()->getLongitude()];
             }
             $response[] = ['name' => $line->getName(), 'line' => 'Line ' . $line->getNumber(), 'stops' => $stops];
         }

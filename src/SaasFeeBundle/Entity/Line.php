@@ -72,7 +72,15 @@ class Line
      */
     public function getStops()
     {
-        return $this->stops;
+        $stops = $this->stops->getValues();
+        usort(
+            $stops,
+            function (LineStop $a, LineStop $b) {
+                return strcmp($a->getStopOrder(), $b->getStopOrder());
+            }
+        );
+
+        return $stops;
     }
 
     /**
