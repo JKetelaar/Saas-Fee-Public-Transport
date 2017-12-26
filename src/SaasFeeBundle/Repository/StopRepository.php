@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author JKetelaar
+ */
 namespace SaasFeeBundle\Repository;
 
 /**

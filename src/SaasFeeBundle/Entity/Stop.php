@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author JKetelaar
+ */
 namespace SaasFeeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
