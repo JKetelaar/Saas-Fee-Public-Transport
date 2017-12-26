@@ -2,6 +2,7 @@
 /**
  * @author JKetelaar
  */
+
 namespace SaasFeeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -98,6 +99,16 @@ class LineStop
     }
 
     /**
+     * Get stopOrder
+     *
+     * @return int
+     */
+    public function getStopOrder()
+    {
+        return $this->stopOrder;
+    }
+
+    /**
      * Set stopOrder
      *
      * @param integer $stopOrder
@@ -109,16 +120,6 @@ class LineStop
         $this->stopOrder = $stopOrder;
 
         return $this;
-    }
-
-    /**
-     * Get stopOrder
-     *
-     * @return int
-     */
-    public function getStopOrder()
-    {
-        return $this->stopOrder;
     }
 }
 

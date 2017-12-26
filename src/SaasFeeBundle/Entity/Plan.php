@@ -68,6 +68,16 @@ class Plan
     }
 
     /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * Set type
      *
      * @param string $type
@@ -82,13 +92,13 @@ class Plan
     }
 
     /**
-     * Get type
+     * Get line
      *
-     * @return string
+     * @return \stdClass
      */
-    public function getType()
+    public function getLine()
     {
-        return $this->type;
+        return $this->line;
     }
 
     /**
@@ -106,13 +116,13 @@ class Plan
     }
 
     /**
-     * Get line
+     * Get stop
      *
      * @return \stdClass
      */
-    public function getLine()
+    public function getStop()
     {
-        return $this->line;
+        return $this->stop;
     }
 
     /**
@@ -130,13 +140,13 @@ class Plan
     }
 
     /**
-     * Get stop
+     * Get time
      *
-     * @return \stdClass
+     * @return \DateTime
      */
-    public function getStop()
+    public function getTime()
     {
-        return $this->stop;
+        return $this->time;
     }
 
     /**
@@ -154,13 +164,13 @@ class Plan
     }
 
     /**
-     * Get time
+     * Get dayType
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getTime()
+    public function getDayType()
     {
-        return $this->time;
+        return $this->dayType;
     }
 
     /**
@@ -175,16 +185,6 @@ class Plan
         $this->dayType = $dayType;
 
         return $this;
-    }
-
-    /**
-     * Get dayType
-     *
-     * @return string
-     */
-    public function getDayType()
-    {
-        return $this->dayType;
     }
 }
 
