@@ -7,7 +7,8 @@ namespace SaasFeeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Stop
+ * Class Stop
+ * @package SaasFeeBundle\Entity
  *
  * @ORM\Table(name="stop")
  * @ORM\Entity(repositoryClass="SaasFeeBundle\Repository\StopRepository")
