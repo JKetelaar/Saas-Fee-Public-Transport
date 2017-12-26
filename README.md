@@ -1,4 +1,4 @@
-SaasFee
+Saas-Fee Public Transport
 =======
 
-A Symfony project created on December 26, 2017, 9:25 pm.
+API to calculate the fastest route at your preferred time with the public transport of Saas-Fee
