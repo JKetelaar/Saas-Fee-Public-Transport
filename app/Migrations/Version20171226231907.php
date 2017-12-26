@@ -46,7 +46,7 @@ class Version20171226231907 extends AbstractMigration implements ContainerAwareI
         $this->addLine(
             'Allalino',
             3,
-            ['Alphitta', 'Etoile', 'Royal', 'Allalin', 'Central', 'Dorfplatz', 'Gletscherbrücke']
+            ['Alphitta', 'Etoile', 'Royal', 'Allalin', 'Central', 'Dorfplats', 'Gletscherbrücke']
         );
 
         $this->addLine(
