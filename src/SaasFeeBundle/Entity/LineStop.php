@@ -48,6 +48,12 @@ class LineStop
      */
     private $stopOrder;
 
+    /**
+     * @var Plan[]
+     *
+     * @ORM\OneToMany(targetEntity="SaasFeeBundle\Entity\Plan", mappedBy="lineStop")
+     */
+    private $plans;
 
     /**
      * Get id

@@ -33,18 +33,12 @@ class Plan
     private $type;
 
     /**
-     * @var \stdClass
+     * @var LineStop
      *
-     * @ORM\Column(name="line", type="object")
+     * @ORM\ManyToOne(targetEntity="SaasFeeBundle\Entity\LineStop", inversedBy="plans")
+     * @ORM\JoinColumn(name="line_stop_id", referencedColumnName="id")
      */
-    private $line;
-
-    /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="stop", type="object")
-     */
-    private $stop;
+    private $lineStop;
 
     /**
      * @var \DateTime
@@ -60,6 +54,13 @@ class Plan
      */
     private $dayType;
 
+    /**
+     * Plan constructor.
+     */
+    public function __construct()
+    {
+        $this->time = new \DateTime();
+    }
 
     /**
      * Get id
@@ -96,49 +97,21 @@ class Plan
     }
 
     /**
-     * Get line
-     *
-     * @return \stdClass
+     * @return LineStop
      */
-    public function getLine()
+    public function getLineStop()
     {
-        return $this->line;
+        return $this->lineStop;
     }
 
     /**
-     * Set line
-     *
-     * @param \stdClass $line
+     * @param LineStop $lineStop
      *
      * @return Plan
      */
-    public function setLine($line)
+    public function setLineStop($lineStop): Plan
     {
-        $this->line = $line;
-
-        return $this;
-    }
-
-    /**
-     * Get stop
-     *
-     * @return \stdClass
-     */
-    public function getStop()
-    {
-        return $this->stop;
-    }
-
-    /**
-     * Set stop
-     *
-     * @param \stdClass $stop
-     *
-     * @return Plan
-     */
-    public function setStop($stop)
-    {
-        $this->stop = $stop;
+        $this->lineStop = $lineStop;
 
         return $this;
     }
